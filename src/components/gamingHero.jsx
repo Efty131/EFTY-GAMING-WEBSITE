@@ -37,12 +37,12 @@ export default function GamingHero() {
         
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#" className="text-white font-medium hover:text-cyan-400 transition-colors">Home</a>
+          <a href="/" className="text-white font-medium hover:text-cyan-400 transition-colors">Home</a>
           <a href="https://www.youtube.com/@Efty-v8s/videos" className="text-white font-medium hover:text-cyan-400 transition-colors">Videos</a>
           <a href="https://www.youtube.com/@Efty-v8s/shorts" className="text-white font-medium hover:text-cyan-400 transition-colors">Shorts</a>
-          <a href="#" className="text-white font-medium hover:text-cyan-400 transition-colors">Blog</a>
-          <a href="#" className="text-white font-medium hover:text-cyan-400 transition-colors">About</a>
-          <a href="#" className="text-white font-medium hover:text-cyan-400 transition-colors">Contact</a>
+          <a href="/" className="text-white font-medium hover:text-cyan-400 transition-colors">Blog</a>
+          <a href="/" className="text-white font-medium hover:text-cyan-400 transition-colors">About</a>
+          <a href="/" className="text-white font-medium hover:text-cyan-400 transition-colors">Contact</a>
         </div>
 
         <div className="flex items-center gap-4">
@@ -103,7 +103,7 @@ export default function GamingHero() {
         {/* Mobile Menu Links */}
         <div className="flex flex-col items-start gap-6 mt-24 px-8">
           <a 
-            href="#" 
+            href="/" 
             className={`text-white font-medium text-lg hover:text-cyan-400 transition-all duration-300 transform ${
               isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
             }`}
@@ -130,7 +130,7 @@ export default function GamingHero() {
             Shorts
           </a>
           <a 
-            href="#" 
+            href="/" 
             className={`text-white font-medium text-lg hover:text-cyan-400 transition-all duration-300 transform ${
               isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
             }`}
@@ -139,7 +139,7 @@ export default function GamingHero() {
             Blog
           </a>
           <a 
-            href="#" 
+            href="/" 
             className={`text-white font-medium text-lg hover:text-cyan-400 transition-all duration-300 transform ${
               isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
             }`}
@@ -148,7 +148,7 @@ export default function GamingHero() {
             About
           </a>
           <a 
-            href="#" 
+            href="/" 
             className={`text-white font-medium text-lg hover:text-cyan-400 transition-all duration-300 transform ${
               isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
             }`}
