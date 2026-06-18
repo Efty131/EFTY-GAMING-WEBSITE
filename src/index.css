@@ -80,3 +80,45 @@
 .animate-scale-in {
   animation: scale-in 0.3s ease-out;
 }
+
+/* ========================================
+   Light Theme Overrides
+   ======================================== */
+html.light body {
+  color: #1f2937;
+}
+
+html.light .bg-black\/50 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+html.light .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+html.light .bg-black\/95 {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+html.light .bg-black\/30 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+html.light .bg-black\/80 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+html.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html.light .text-white {
+  color: #1f2937;
+}
+
+html.light .neon-glow-text {
+  text-shadow: none;
+  animation: none;
+  color: #0891b2;
+  font-weight: 800;
+}
