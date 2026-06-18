@@ -14,8 +14,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<GamingHero isDark={isDark} toggleTheme={toggleTheme} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About isDark={isDark} toggleTheme={toggleTheme} />} />
+          <Route path="/contact" element={<Contact isDark={isDark} toggleTheme={toggleTheme} />} />
         </Routes>
         <Footer />
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Youtube, Gamepad2, Monitor, Heart } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import Navbar from '../components/Navbar';
 
 const HIGHLIGHTS = [
   {
@@ -20,11 +21,11 @@ const HIGHLIGHTS = [
   },
 ];
 
-export default function About() {
+export default function About({ isDark, toggleTheme }) {
   const [ref, isVisible] = useScrollAnimation();
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className={`min-h-screen relative overflow-hidden ${isDark ? 'bg-black' : 'bg-gray-50'}`}>
       {/* Background */}
       <div
         className="fixed inset-0 z-0"
@@ -32,18 +33,20 @@ export default function About() {
           backgroundImage: 'url("https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: '0.15',
+          opacity: isDark ? '0.15' : '0.08',
         }}
       ></div>
-      <div className="fixed inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 z-0"></div>
+      <div className={`fixed inset-0 z-0 ${isDark ? 'bg-gradient-to-b from-black/80 via-black/60 to-black/80' : 'bg-gradient-to-b from-gray-50/80 via-gray-50/60 to-gray-50/80'}`}></div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-20">
+      <Navbar isDark={isDark} toggleTheme={toggleTheme} />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-16">
         {/* Header */}
         <div ref={ref} className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">Efty Gaming</span>
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
             Welcome to Efty Gaming — your destination for high-quality gaming content.
             From stunning open-world drives to intense multiplayer battles, every video
             is crafted to deliver the best gaming experience on YouTube.
@@ -52,12 +55,12 @@ export default function About() {
 
         {/* Story Section */}
         <div className="mb-20">
-          <div className="bg-black/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+          <div className={`backdrop-blur-sm border rounded-2xl p-8 md:p-12 ${isDark ? 'bg-black/50 border-white/10' : 'bg-white/50 border-gray-200'}`}>
+            <h2 className={`text-3xl font-bold mb-6 flex items-center gap-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               <Youtube size={28} className="text-red-500" />
               My Story
             </h2>
-            <div className="space-y-4 text-gray-300 leading-relaxed">
+            <div className={`space-y-4 leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
               <p>
                 What started as a passion for gaming turned into a mission to share incredible
                 gaming moments with the world. Efty Gaming is all about showcasing the beauty
@@ -81,7 +84,7 @@ export default function About() {
         {/* Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {HIGHLIGHTS.map((item, index) => (
-            <HighlightCard key={index} item={item} index={index} />
+            <HighlightCard key={index} item={item} index={index} isDark={isDark} />
           ))}
         </div>
 
@@ -101,20 +104,20 @@ export default function About() {
   );
 }
 
-function HighlightCard({ item, index }) {
+function HighlightCard({ item, index, isDark }) {
   const [ref, isVisible] = useScrollAnimation();
 
   return (
     <div
       ref={ref}
-      className={`bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 text-center hover:border-cyan-500/50 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`backdrop-blur-sm border rounded-xl p-8 text-center hover:border-cyan-500/50 transition-all duration-500 ${isDark ? 'bg-black/50 border-white/10' : 'bg-white/50 border-gray-200'} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
       <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-cyan-400/10 flex items-center justify-center text-cyan-400">
         {item.icon}
       </div>
-      <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-      <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+      <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>{item.title}</h3>
+      <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{item.description}</p>
     </div>
   );
 }
