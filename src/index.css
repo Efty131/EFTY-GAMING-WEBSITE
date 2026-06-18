@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ========================================
+   Custom Animations (moved from style jsx)
+   ======================================== */
+
+/* Neon color-shift animation for the hero heading */
+@keyframes neon-color-shift {
+  0% {
+    color: #00ffff;
+    text-shadow: 0 0 7px #00ffff, 0 0 20px #00ffff, 0 0 45px #00bfff, 0 0 80px #00bfff;
+  }
+  25% {
+    color: #a78bfa;
+    text-shadow: 0 0 7px #a78bfa, 0 0 20px #a78bfa, 0 0 45px #7c3aed, 0 0 80px #7c3aed;
+  }
+  50% {
+    color: #22d3ee;
+    text-shadow: 0 0 7px #22d3ee, 0 0 20px #22d3ee, 0 0 45px #0e7490, 0 0 80px #0e7490;
+  }
+  75% {
+    color: #f0abfc;
+    text-shadow: 0 0 7px #f0abfc, 0 0 20px #f0abfc, 0 0 45px #c026d3, 0 0 80px #c026d3;
+  }
+  100% {
+    color: #00ffff;
+    text-shadow: 0 0 7px #00ffff, 0 0 20px #00ffff, 0 0 45px #00bfff, 0 0 80px #00bfff;
+  }
+}
+
+/* Gradient animation for video card borders */
+@keyframes gradient-slow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-slow {
+  background-size: 200% 200%;
+  animation: gradient-slow 8s ease infinite;
+}
+
+/* Neon glow text effect for hero heading */
+.neon-glow-text {
+  font-weight: 800;
+  animation: neon-color-shift 4s ease-in-out infinite;
+}
+
+/* Line clamp utility (for video titles) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Modal animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
