@@ -1,21 +1,31 @@
-import { CORS_PROXY, RSS_FEED_URL } from '../config';
-
 /**
- * Fetches and parses the YouTube RSS feed.
- * Returns an array of video objects with title, thumbnail, videoId, and publishedAt.
+ * Fetches YouTube videos from the serverless API route.
+ * Falls back to CORS proxy for local development without Vercel.
  */
 export async function fetchYouTubeVideos() {
-  const response = await fetch(`${CORS_PROXY}${encodeURIComponent(RSS_FEED_URL)}`);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch YouTube feed: ${response.status}`);
+  // Try the Vercel serverless function first (no CORS issues)
+  try {
+    const response = await fetch('/api/youtube');
+    if (response.ok) {
+      const data = await response.json();
+      if (data.videos) return data.videos;
+    }
+  } catch {
+    // API route not available (local dev without Vercel), fall through
   }
 
-  const xmlText = await response.text();
+  // Fallback: CORS proxy (for local development with npm start)
+  const { CORS_PROXY, RSS_FEED_URL } = await import('../config');
+  const proxyResponse = await fetch(`${CORS_PROXY}${encodeURIComponent(RSS_FEED_URL)}`);
+
+  if (!proxyResponse.ok) {
+    throw new Error(`Failed to fetch YouTube feed: ${proxyResponse.status}`);
+  }
+
+  const xmlText = await proxyResponse.text();
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
 
-  // Check for parse errors
   const parseError = xmlDoc.querySelector('parsererror');
   if (parseError) {
     throw new Error('Failed to parse YouTube feed XML');
@@ -33,7 +43,6 @@ export async function fetchYouTubeVideos() {
     const description = entry.querySelector('media\\:description, description')?.textContent;
     const views = entry.querySelector('media\\:statistics, statistics')?.getAttribute('views');
 
-    // Skip YouTube Shorts (link contains /shorts/)
     const isShort = link.includes('/shorts/');
 
     if (videoId && title && !isShort) {
